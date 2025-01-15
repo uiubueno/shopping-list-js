@@ -21,9 +21,36 @@ botaoAdicionar.addEventListener("click", (event) => {
   const nomeItem = document.createElement("p");
   nomeItem.innerText = inputItem.value;
 
+  inputCheckBox.addEventListener("click", function () {
+    if (inputCheckBox.checked) {
+      nomeItem.style.textDecoration = "line-through";
+    } else {
+      nomeItem.style.textDecoration = "none";
+    }
+  });
+
   containerItemDaLista.appendChild(inputCheckBox);
   containerItemDaLista.appendChild(nomeItem);
 
   itemDaLista.appendChild(containerItemDaLista);
+
+  const diaDaSemana = new Date().toLocaleDateString("pt-BR", {
+    weekday: "long",
+  });
+
+  const data = new Date().toLocaleDateString("pt-BR");
+
+  const hora = new Date().toLocaleTimeString("pt-BR", {
+    hour: "numeric",
+    minute: "numeric",
+  });
+
+  const dataCompleta = `${diaDaSemana} (${data}) às (${hora})`;
+  const itemData = document.createElement("p");
+  itemData.innerText = dataCompleta;
+  itemData.classList = "texto-data";
+
+  itemDaLista.appendChild(itemData);
+
   listaDeCompras.appendChild(itemDaLista);
 });
